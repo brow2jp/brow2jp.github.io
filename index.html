@@ -5,16 +5,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>WAPH-John Brown-Individual Project 1</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css" crossorigin="anonymous">
-    </head>
-    <body>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous">
         </script>
+    </head>
+    <body>
         <div class="top-bar">
             <ul class="menu">
                 <li class="menu-text">Individual Project 1: John Brown - brow2jp@mail.uc.edu</li>
             </ul>
+        </div>
+
+        <div class="row">
+            <p>
+                TODO: Integrate JavaScript cookies
+                - If first time visit, display a message “Welcome to my homepage!”
+                - If revisit, display a message “Welcome back! Your last visit was <the date/time of last visit>”
+            </p>
+            <script>
+                if (document.cookie.indexOf("username") < 0) {
+                    alert('no username in cookie, set a new one');
+                    document.cookie = "username=brow2jp";
+                } else {
+                    alert("my cookie:" + document.cookie);
+                }
+            </script>
         </div>
 
         <div class="callout large">
@@ -43,7 +59,10 @@
             <div class="medium-6 columns medium-push-6">
                 <h2>Background</h2>
                 <p>
-                    TODO: fill in fluff
+                    John Brown is a graduate student at the University of Cincinnati. He will be graduating this spring
+                    with his Masters in Computer Science. John completed his undergrad at the University of Dayton, in 2018,
+                    where he received a bachelors of science in Computer Engineering. John has been working in the defense
+                    industry for the past 4+ years.
                 </p>
             </div>
             <div class="medium-6 columns medium-push-6">
@@ -58,19 +77,155 @@
                 </a>
             </div>
         </div>
+
         <div class="row column">
             <h3>
                 Page Tracker
             </h3>
             <p>
                 Below is the page tracker required in this HTML page. This was created
-                using flagcounter.com</p>
+                using flagcounter.com
+            </p>
             <a href="https://info.flagcounter.com/0Al7"><img src="https://s11.flagcounter.com/map/0Al7/size_s/txt_000000/border_CCCCCC/pageviews_1/viewers_0/flags_0/" alt="Flag Counter" border="0"></a>
             <!-- forum link [URL=https://info.flagcounter.com/0Al7][IMG]https://s11.flagcounter.com/map/0Al7/size_s/txt_000000/border_CCCCCC/pageviews_1/viewers_0/flags_0/[/IMG][/URL] -->
         </div>
 
+        <div class="row column">
+            <h3>
+                Contents from Lab2
+            </h3>
+            <p>
+                Below is required contents from Lab2
+            </p>
+            <div>
+                <hr>
+                <b>
+                    Interaction with forms
+                </b>
+                <div>
+                    <i>
+                        Form with an HTTP GET Request
+                    </i>
+                    <form action="/echo.php" method="GET">
+                        Your input:
+                        <input name="data">
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+                <i>
+                    Form with an HTTP POST Request
+                </i>
+                <form action="/echo.php" method="POST" name="echo_post">
+                    Your input:
+                    <input name="data" onkeypress="console.log('You have pressed a key')">
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+            <div>
+                <i>
+                    Ajax requests
+                </i><br>
+                    Your input:
+                    <input name="data" onkeypress="console.log('You have pressed a key')" id="data">
+                    <input class="button round" type="button" value="Ajax Echo" onclick="getEcho()">
+                    <input class="button round" type="button" value="Ajax jQuery GET" onclick="jQueryAjax()">
+                    <input class="button round" type="button" value="Ajax jQuery POST" onclick="jQueryAjaxPost()">
+                    <input class="button round" type="button" value="guess Age" onclick="guessAge($('#data').val())">
+                <div id="response"></div>
+            </div>
+            <hr>
+            <b>
+                Experiments with JavaScript code
+            </b><br>
+            <i>
+                Inlined JavaScript
+            </i>
+            <div id="date" onclick="document.getElementById('date').innerHTML= Date()">
+                Click here to show Date()
+            </div>
+        </div>
+        <script type="text/javascript">
+            function displayTime() {
+                document.getElementById('digit-clock').innerHTML = "Current time:" + new Date();
+            }
+            setInterval(displayTime,500);
 
+            // code for the analog clock
+            var canvas = document.getElementById("analog-clock");
+            var ctx = canvas.getContext("2d");
+            var radius = canvas.height / 2;
+            ctx.translate(radius, radius);
+            radius = radius * 0.90
+            setInterval(drawClock, 1000);
 
+            function drawClock() {
+                drawFace(ctx, radius);
+                drawNumbers(ctx, radius);
+                drawTime(ctx, radius);
+            }
+
+            function getEcho() {
+                var input = document.getElementById("data").value;
+                if (input.length == 0) {
+                    return;
+                }
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log("Received data="+xhttp.responseText);
+                        document.getElementById("response").innerText="Response from server:" + xhttp.responseText;
+                    }
+                }
+                xhttp.open("GET", "echo.php?data="+input, true);
+                xhttp.send();
+                document.getElementById("data").value="";
+            }
+
+            function jQueryAjax() {
+                var input = $("#data").val();
+                if (input.length == 0) {
+                    return;
+                }
+                $.get("echo.php?data="+input,
+                    function(result) {
+                        $("#response" ).html( "Response from server:" + result );
+                    }
+                );
+                $("#data").val("");
+            }
+
+            function jQueryAjaxPost() {
+                var input = $("#data").val();
+                if (input.length == 0) {
+                    return;
+                }
+                $.post("echo.php",
+                    {data: input},
+                    function( result ) {
+                        $("#response" ).html( "Response from server:" + result );
+                    }
+                );
+                $("#data").val("");
+            }
+
+            $.get("https://v2.jokeapi.dev/joke/Programming?type=single",
+                function (result) {
+                    console.log("From jokeAPI: " + JSON.stringify(result));
+                    $("#response" ).html( "A programming joke of the day: " + result.joke);
+                }
+            );
+
+            async function guessAge(name) {
+                const response = await fetch("https://api.agify.io/?name="+name);
+                const result = await response.json();
+                $("#response" ).html("Hi " + name + ", your age should be " + result.age);
+            }
+        </script>
+        <p>
+            TODO: add one more (Add open-source JavaScript framework)
+            TODO: add new joke every 1 minutes
+            TODO: Integrate with https://xkcd.com/info.0.json
+        </p>
             <!-- <div id="main">
                 <div class="top-bar-right">
                     <ul class="menu">
@@ -107,9 +262,13 @@
         </div> -->
         <div class="row column">
             <hr>
-            <ul class="menu">
-                <li>Individual Project 1: John Brown - brow2jp@mail.uc.edu</li>
-                <li class="float-right">Copyright 2024</li>
+            <ul class="menu" style="background-color:#999">
+                <li>
+                    Individual Project 1: John Brown - brow2jp@mail.uc.edu
+                </li>
+                <li class="float-right">
+                    Copyright 2024
+                </li>
             </ul>
         </div>
     </body>
