@@ -11,8 +11,8 @@
         </script>
     </head>
     <body>
-        <div class="top-bar">
-            <ul class="menu" style="background-color:#999">
+        <div class="top-bar" style="background-color:#999">
+            <ul class="menu">
                 <li class="menu-text">
                     Individual Project 1: John Brown - brow2jp@mail.uc.edu
                 </li>
@@ -20,9 +20,22 @@
             <div id="email" onclick="showhideEmail()">
                 Show my email
             </div>
-            <script type="text/javascript" src="https://github.com/brow2jp/waph-brow2jp/blob/main/labs/lab2/srs/email.js"></script>
+            <script>
+                var shown = false;
+                function showhideEmail() {
+                    if ( shown ) {
+                        document.getElementById('email').innerHTML = "Show my email";
+                        shown = false;
+                    } else {
+                        var myemail = "<a href='mailto:brow2jp"+ "@" +
+                                    "mail.uc.edu'>brow2jp" + "@" + "mail.uc.edu</a>";
+                        document.getElementById('email').innerHTML = myemail;
+                        shown = true;
+                    }
+                }
+            </script>
             <div id="digit-clock"></div>
-            <canvas id="analog-clock" width="150" height="150" style="background-color:#999"></canvas>
+            <canvas id="analog-clock" width="150" height="150" style="background-color:#888"></canvas>
             <script src="https://waph-uc.github.io/clock.js"></script>
         </div>
 
