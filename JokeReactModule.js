@@ -6,18 +6,24 @@ class JokeTimer extends React.Component {
         };
     }
 
-    useEffect(() => {
-        const interval = setInterval( () => {
-            const jokeResponse = fetch('https://v2.jokeapi.dev/joke/Programming?type=single')
-                .then(jokeResult => jokeResponse.json());
-            console.log(jokeResponse);
-            console.log(jokeResult);
+    componentDidMount() {
+        const jokeResponse = fetch('https://v2.jokeapi.dev/joke/Programming?type=single');
+        const jokeResult = jokeResponse.json();
+        console.log(jokeResponse)
+        console.log(jokeResult)
+        this.setState({ currentJoke: jokeResult.joke });
+
+        this.interval = setInterval( () => {
+            const jokeResponse = fetch('https://v2.jokeapi.dev/joke/Programming?type=single');
+            const jokeResult = jokeResponse.json();
             this.setState({ currentJoke: jokeResult.joke });
         },
-        60000);
+        60000)
+    }
 
-        return () => clearInterval(interval);
-    }, [] );
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
 
     render() {
         return (
