@@ -84,7 +84,10 @@
                     John Brown is a graduate student at the University of Cincinnati. He will be graduating this spring
                     with his Masters in Computer Science. John completed his undergrad at the University of Dayton, in 2018,
                     where he received a bachelors of science in Computer Engineering. John has been working in the defense
-                    industry for the past 4+ years.
+                    industry for the past 4+ years. John is proficient with the C and Python programming languages. He has a
+                    strong dislike for object oriented programming, having most of his professional expertise in the embedded
+                    field of software. If you have any questions about John's background, please do not hesitate to reach
+                    out, the email is located in the banner above, under the "Show my email" text.
                 </p>
             </div>
             <div class="medium-6 columns medium-push-6">
@@ -105,8 +108,8 @@
                 Page Tracker
             </h3>
             <p>
-                Below is the page tracker required in this HTML page. This was created
-                using flagcounter.com
+                Below is the page tracker required in this HTML page. This was created using flagcounter.com. This is
+                actually quite interesting, because multiple foreign countries have visited my GitHub site.
             </p>
             <a href="https://info.flagcounter.com/0Al7"><img src="https://s11.flagcounter.com/map/0Al7/size_s/txt_000000/border_CCCCCC/pageviews_1/viewers_0/flags_0/" alt="Flag Counter" border="0"></a>
             <!-- forum link [URL=https://info.flagcounter.com/0Al7][IMG]https://s11.flagcounter.com/map/0Al7/size_s/txt_000000/border_CCCCCC/pageviews_1/viewers_0/flags_0/[/IMG][/URL] -->
@@ -114,10 +117,10 @@
 
         <div class="row column">
             <h3>
-                Contents from Lab2
+                Contents from Lab2.
             </h3>
             <p>
-                Below is required contents from Lab2
+                Below is required contents from Lab2. This is to showcase the class content provided by Dr. Phung.
             </p>
             <div>
                 <hr>
@@ -244,6 +247,64 @@
             }
         </script>
         <p>
+            Below is a JavaScript React to display a new joke every minute.
+        </p>
+        <div id="joke-timer"></div>
+        <script>
+            class JokeTimer extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    seconds: parseInt(props.startTimeInSeconds, 10) || 0
+                };
+            }
+
+            tick() {
+                this.setState(state => ({
+                seconds: state.seconds + 1
+                }));
+            }
+
+            componentDidMount() {
+                this.interval = setInterval(() => this.tick(), 1000);
+            }
+
+            componentWillUnmount() {
+                clearInterval(this.interval);
+            }
+
+            grabJoke(secs) {
+                let retVal;
+                $.get("https://v2.jokeapi.dev/joke/Programming?type=single",
+                    function(result)  {
+                        if ( result !== null ) {
+                            retVal = result.joke;
+                        }
+                    }
+                );
+                return retVal;
+            }
+
+            render() {
+                return (
+                    <div>
+                        <div class="row column">
+                            <h3>
+                                Here is the Joke for this second!
+                            </h3>
+                            Joke: {this.grabJoke(this.state.seconds)}
+                        </div>
+                    </div>
+                );
+            }
+            }
+
+            ReactDOM.render(
+                <JokeTimer startTimeInSeconds="300" />,
+                document.getElementById('joke-timer')
+            );
+        </script>
+        <p>
             TODO: add one more (Add open-source JavaScript framework)
             TODO: add new joke every 1 minutes
             TODO: Integrate with https://xkcd.com/info.0.json
@@ -253,13 +314,7 @@
                     <ul class="menu">
                         <div id="response"></div>
                         <script>
-                            $.get("https://v2.jokeapi.dev/joke/Programming?type=single",
-                                function(result)  {
-                                    if ( result !== null ) {
-                                        $("#response").html("A programming joke of the day: " + result.joke);
-                                    }
-                                }
-                            );
+
                         </script>
                     </ul>
                   </div> -->
