@@ -235,7 +235,6 @@
 
             $.get("https://v2.jokeapi.dev/joke/Programming?type=single",
                 function (result) {
-                    console.log("From jokeAPI: " + JSON.stringify(result));
                     $("#response" ).html( "A programming joke of the day: " + result.joke);
                 }
             );
@@ -250,6 +249,8 @@
             Below is a JavaScript React to display a new joke every minute.
         </p>
         <div id="joke-timer"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.6.3/umd/react.production.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.6.3/umd/react-dom.production.min.js"></script>
         <script>
             class JokeTimer extends React.Component {
             constructor(props) {
@@ -300,7 +301,7 @@
             }
 
             ReactDOM.render(
-                <JokeTimer startTimeInSeconds="300" />,
+                <JokeTimer startTimeInSeconds="0" />,
                 document.getElementById('joke-timer')
             );
         </script>
