@@ -265,13 +265,13 @@
         <h3>
             Integrate with https://xkcd.com/info.0.json
         </h3>
-        <!-- <img id="xkcd" src=""> -->
+        <div id="xkcd"></div>
         <script>
-            async function integrateWithXKCD() {
-            const xkcdResponse = await fetch("https://xkcd.com/info.0.json");
-            const xkcdResult = await xkcdResponse.json();
-            document.getElementById("xkcd").src="xkcdResult.img";
-        }
+            $.get("https://xkcd.com/info.0.json",
+                function (result) {
+                    $("#xkcd" ).html( "Response from https://xkcd.com" + result.img);
+                }
+            );
         </script>
         <div class="row column">
             <ul class="menu" style="background-color:#999">
