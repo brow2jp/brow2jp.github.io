@@ -263,13 +263,13 @@
         <script type="module" src="JokeReactModule.js"></script>
         <hr>
         <h3>
-            Integrate with https://xkcd.com/info.0.json
+            Integrate with https://api.weatherbit.io
         </h3>
-        <div id="xkcd"></div>
+        <div id="weather"></div>
         <script>
-            $.get("https://xkcd.com/info.0.json",
+            $.get("https://api.weatherbit.io/v2.0/current?lat=35.7721&lon=-78.63861&key=XXX&units=I",
                 function (result) {
-                    $("#xkcd" ).html( "Response from https://xkcd.com" + result.img);
+                    $("#weather" ).html( "Response from https://api.weatherbit.io" + result.data);
                 }
             );
         </script>
