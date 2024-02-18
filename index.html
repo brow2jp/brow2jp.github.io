@@ -140,7 +140,7 @@
                     <i>
                         Form with an HTTP GET Request
                     </i>
-                    <form action="echo.php" method="GET">
+                    <form action="/echo.php" method="GET">
                         Your input: <input name="data">
                         <input type="submit" value="Submit">
                     </form>
@@ -148,7 +148,7 @@
                 <i>
                     Form with an HTTP POST Request
                 </i>
-                <form action="echo.php" method="POST" name="echo_post">
+                <form action="/echo.php" method="POST" name="echo_post">
                     Your input:
                     <input name="data"
                         onkeypress="console.log('You have pressed a key')">
@@ -211,7 +211,7 @@
                         document.getElementById("response").innerText="Response from server:" + xhttp.responseText;
                     }
                 }
-                xhttp.open("GET", "echo.php?data="+input, true);
+                xhttp.open("GET", "/echo.php?data="+input, true);
                 xhttp.send();
                 document.getElementById("data").value="";
             }
@@ -221,7 +221,7 @@
                 if (input.length == 0) {
                     return;
                 }
-                $.get("echo.php?data="+input,
+                $.get("/echo.php?data="+input,
                     function(result) {
                         $("#response" ).html( "Response from server:" + result );
                     }
@@ -234,7 +234,7 @@
                 if (input.length == 0) {
                     return;
                 }
-                $.post("echo.php",
+                $.post("/echo.php",
                     {data: input},
                     function( result ) {
                         $("#response" ).html( "Response from server:" + result );
@@ -255,9 +255,9 @@
                 $("#response" ).html("Hi " + name + ", your age should be " + result.age);
             }
         </script>
-        <h3>
-            Below is a JavaScript React to display a new joke every minute.
-        </h3>
+        <h2>
+            Below is a JavaScript React Module to display a new joke every minute.
+        </h2>
         <div id="joke-timer" />
         <script type="module" src="JokeReactModule.js"></script>
         <p>
