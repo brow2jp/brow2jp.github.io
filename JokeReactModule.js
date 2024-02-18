@@ -24,12 +24,7 @@ class JokeTimer extends Component {
 
     render() {
         return (
-            <div class="row column">
-                <h2>
-                    Here is the Joke for this second!
-                </h2>
-                Joke: {this.state.currentJoke}
-            </div>
+            this.state.currentJoke
         );
     }
 }
