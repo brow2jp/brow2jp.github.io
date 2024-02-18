@@ -256,6 +256,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.6.3/umd/react-dom.production.min.js"></script>
         <script>
             import React, { Component } from 'react';
+            import * as ReactDOM from 'react-dom';
 
             class JokeTimer extends Component {
                 constructor(props) {
@@ -291,8 +292,7 @@
             }
 
             ReactDOM.render(
-                <JokeTimer startTimeInSeconds="0" />,
-                document.getElementById('joke-timer')
+                <JokeTimer/>, document.getElementById('joke-timer')
             );
         </script>
         <p>
