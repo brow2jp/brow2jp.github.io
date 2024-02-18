@@ -84,7 +84,7 @@
             <div class="medium-6 columns medium-push-6">
                 <h2>Background</h2>
                 <p>
-                    John Brown is a graduate student at the University of Cincinnati. He will be graduating this spring
+                    <b>John Brown</b> is a graduate student at the University of Cincinnati. He will be graduating this spring
                     with his Masters in Computer Science. John completed his undergrad at the University of Dayton, in 2018,
                     where he received a bachelors of science in Computer Engineering. John has been working in the defense
                     industry for the past 4+ years. John is proficient with the C and Python programming languages. He has a
@@ -255,50 +255,39 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.6.3/umd/react.production.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.6.3/umd/react-dom.production.min.js"></script>
         <script>
-            class JokeTimer extends React.Component {
-            constructor(props) {
-                super(props);
-                this.state = {
-                    seconds: parseInt(props.startTimeInSeconds, 10) || 0
-                };
-            }
+            import React, { Component } from 'react';
 
-            tick() {
-                this.setState(state => ({
-                seconds: state.seconds + 1
-                }));
-            }
+            class JokeTimer extends Component {
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        currentJoke: null
+                    };
+                }
 
-            componentDidMount() {
-                this.interval = setInterval(() => this.tick(), 1000);
-            }
+                componentDidMount() {
+                    this.interval = setInterval( () => {
+                        fetch('https://api.npms.io/v2/search?q=react')
+                            .then(response => response.json())
+                            .then(data => this.setState({ currentJoke: response.joke }));
+                    },
+                    1000)
+                }
 
-            componentWillUnmount() {
-                clearInterval(this.interval);
-            }
+                componentWillUnmount() {
+                    clearInterval(this.interval);
+                }
 
-            grabJoke(secs) {
-                let retVal;
-                $.get("https://v2.jokeapi.dev/joke/Programming?type=single",
-                    function(result)  {
-                        if ( result !== null ) {
-                            retVal = result.joke;
-                        }
-                    }
-                );
-                return retVal;
-            }
-
-            render() {
-                return (
-                    <div class="row column">
-                        <h3>
-                            Here is the Joke for this second!
-                        </h3>
-                        Joke: {this.grabJoke(this.state.seconds)}
-                    </div>
-                );
-            }
+                render() {
+                    return (
+                        <div class="row column">
+                            <h2>
+                                Here is the Joke for this second!
+                            </h2>
+                            Joke: {this.state.currentJoke}
+                        </div>
+                    );
+                }
             }
 
             ReactDOM.render(
