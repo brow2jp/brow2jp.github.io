@@ -13,7 +13,6 @@ class JokeTimer extends React.Component {
             this.setState({ currentJoke: jokeResult.joke });
         },
         60000)
-        console.log(jokeResponse)
         console.log(jokeResult.joke)
         console.log(this.state.currentJoke)
     }
