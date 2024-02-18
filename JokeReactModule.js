@@ -7,13 +7,15 @@ class JokeTimer extends React.Component {
     }
 
     componentDidMount() {
-        this.interval = setInterval(async () => {
-            const jokeResponse = await fetch('https://v2.jokeapi.dev/joke/Programming?type=single')
-                .then(jokeResult => jokeResponse.json())
+        this.interval = setInterval( () => {
+            const jokeResponse = fetch('https://v2.jokeapi.dev/joke/Programming?type=single')
+                .then(jokeResult => jokeResponse.json());
+            console.log(jokeResponse);
+            console.log(jokeResult);
             this.setState({ currentJoke: jokeResult.joke });
         },
         60000)
-        console.log(this.state.currentJoke)
+
     }
 
     componentWillUnmount() {
