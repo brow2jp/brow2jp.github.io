@@ -51,15 +51,15 @@
                 if (document.cookie.indexOf("lastVisit") < 0) {
                     alert('Welcome to my homepage!');
                     var today = new Date();
-                    var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-                    var time = today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
+                    var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+                    var time = today.getHours()+':'+today.getMinutes();
                     var dateTime = date+' at '+time;
                     document.cookie = "lastVisit="+ dateTime;
                 } else {
                     alert("Welcome back! Your last visit was:" + document.cookie);
                     var today = new Date();
-                    var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-                    var time = today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
+                    var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+                    var time = today.getHours()+':'+today.getMinutes();
                     var dateTime = date+' at '+time;
                     document.cookie = "lastVisit="+ dateTime;
                 }
