@@ -1,6 +1,3 @@
-import React, { Component } from 'react';
-import * as ReactDOM from 'react-dom';
-
 class JokeTimer extends Component {
     constructor(props) {
         super(props);
