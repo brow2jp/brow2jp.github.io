@@ -140,18 +140,18 @@
                     <i>
                         Form with an HTTP GET Request
                     </i>
-                    <form action="/echo.php" method="GET">
-                        Your input:
-                        <input name="data">
+                    <form action="echo.php" method="GET">
+                        Your input: <input name="data">
                         <input type="submit" value="Submit">
                     </form>
                 </div>
                 <i>
                     Form with an HTTP POST Request
                 </i>
-                <form action="/echo.php" method="POST" name="echo_post">
+                <form action="echo.php" method="POST" name="echo_post">
                     Your input:
-                    <input name="data" onkeypress="console.log('You have pressed a key')">
+                    <input name="data"
+                        onkeypress="console.log('You have pressed a key')">
                     <input type="submit" value="Submit">
                 </form>
             </div>
@@ -160,7 +160,8 @@
                     Ajax requests
                 </i><br>
                     Your input:
-                    <input name="data" onkeypress="console.log('You have pressed a key')" id="data">
+                    <input name="data"
+                        onkeypress="console.log('You have pressed a key')" id="data">
                     <input class="button round" type="button" value="Ajax Echo" onclick="getEcho()">
                     <input class="button round" type="button" value="Ajax jQuery GET" onclick="jQueryAjax()">
                     <input class="button round" type="button" value="Ajax jQuery POST" onclick="jQueryAjaxPost()">
