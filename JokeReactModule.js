@@ -33,6 +33,6 @@ class JokeTimer extends Component {
 }
 
 ReactDOM.render(
-    <JokeTimer />,
+    React.createElement(JokeTimer),
     document.getElementById('joke-timer')
 );
