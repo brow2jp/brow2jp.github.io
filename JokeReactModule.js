@@ -16,6 +16,9 @@ class JokeTimer extends Component {
                 .then(data => this.setState({ currentJoke: response.joke }));
         },
         1000)
+        console.log(response)
+        console.log(response.joke)
+        console.log(this.state.currentJoke)
     }
 
     componentWillUnmount() {
