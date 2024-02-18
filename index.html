@@ -255,14 +255,22 @@
                 $("#response" ).html("Hi " + name + ", your age should be " + result.age);
             }
         </script>
-        <p>
+        <h3>
             Below is a JavaScript React to display a new joke every minute.
-        </p>
+        </h3>
         <div id="joke-timer" />
         <script type="module" src="JokeReactModule.js"></script>
         <p>
-            TODO: Integrate with https://xkcd.com/info.0.json
+            Integrate with https://xkcd.com/info.0.json
         </p>
+        <image id="xkcd" src=""></div>
+        <script>
+            async function integrateWithXKCD() {
+            const xkcdResponse = await fetch("https://xkcd.com/info.0.json");
+            const xkcdResult = await xkcdResponse.json();
+            document.getElementById("xkcd").src="xkcdResult.img";
+        }
+        </script>
         <div class="row column">
             <ul class="menu" style="background-color:#999">
                 <li class="menu-text">
